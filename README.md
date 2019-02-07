@@ -1,2 +1,2 @@
-# daily-journals
-EECS 330: Section 70 Team 5
+# project5
+Basic instructions go here.
