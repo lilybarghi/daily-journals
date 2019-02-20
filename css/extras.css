@@ -25,11 +25,6 @@ html {
   background-size: cover;
 }
 
-/* First image (Logo. Full height) */
-.bgimg-1 {
-  /* background-image: url('../images/parallax1.jpg'); */
-  min-height: 100%;
-}
 
 .w3-wide {
   letter-spacing: 10px;
