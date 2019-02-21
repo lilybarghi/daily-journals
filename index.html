@@ -45,7 +45,8 @@
 
 
       <!--modal for form -->
-      <b-modal id="journalEntryModal" size="lg" hide-footer title="Create New Journal Entry" text-variant="black">
+      <b-modal ref="journalEntryModalRef" id="journalEntryModal" size="lg" hide-footer title="Create New Journal Entry"
+        text-variant="black">
         <b-container fluid>
           <!--form-->
           <b-row class="my-1">
@@ -237,6 +238,7 @@
       methods: {
         addEntry(newEntry) {
           this.journals.push(newEntry);
+          this.$refs.journalEntryModalRef.hide()
         }
       },
       computed: {}
