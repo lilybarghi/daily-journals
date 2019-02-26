@@ -304,6 +304,11 @@
       methods: {
         addEntry(newEntry) {
           this.journals.push(newEntry);
+          newEntry.title = "";
+          newEntry.color = "";
+          newEntry.goal = "";
+          newEntry.entry = "";
+          newEntry.emotions = [];
           this.$refs.journalEntryModalRef.hide()
         }
       },
