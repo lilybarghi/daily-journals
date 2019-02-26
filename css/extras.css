@@ -1,163 +1,18 @@
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Lato", sans-serif;
+#calendar{
+  color: black;
 }
 
-body,
-html {
-  height: 100%;
-  color: #777;
-  line-height: 1.8;
-}
-
-/* Create a Parallax Effect */
-.bgimg-1,
-.bgimg-2,
-.bgimg-3 {
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+#today{
+  color: blue;
+  border-style: dotted;
 }
 
 
-.w3-wide {
-  letter-spacing: 10px;
-}
 
-.w3-hover-opacity {
-  cursor: pointer;
-}
 
-/* Turn off parallax scrolling for tablets and phones */
-@media only screen and (max-device-width: 1600px) {
 
-  .bgimg-1,
-  .bgimg-2,
-  .bgimg-3 {
-    background-attachment: scroll;
-    min-height: 400px;
-  }
-}
-
-/* CSS for calendar */
-* {
-  box-sizing: border-box;
-}
-
-ul {
-  list-style-type: none;
-}
-
-body {
-  font-family: Verdana, sans-serif;
-}
-
-.month {
-  padding: 70px 25px;
-  width: 100%;
-  background: #1abc9c;
-  text-align: center;
-}
-
-.month ul {
-  margin: 0;
-  padding: 0;
-}
-
-.month ul li {
-  color: white;
-  font-size: 20px;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-}
-
-.month .prev {
-  float: left;
-  padding-top: 10px;
-}
-
-.month .next {
-  float: right;
-  padding-top: 10px;
-}
-
-.weekdays {
-  margin: 0;
-  padding: 10px 0;
-  background-color: #ddd;
-}
-
-.weekdays li {
-  display: inline-block;
-  width: 13.6%;
-  color: #666;
-  text-align: center;
-}
-
-.days {
-  padding: 10px 0;
-  background: #eee;
-  margin: 0;
-}
-
-.days li {
-  list-style-type: none;
-  display: inline-block;
-  width: 13.6%;
-  height: 30px;
-  text-align: center;
-  margin-bottom: 5px;
-  font-size: 12px;
-  color: #777;
-}
-
-.days li .active {
-  padding: 15px;
-  background: #1abc9c;
-  color: white !important
-}
-
-.days li:hover {
-  color: white;
-  cursor: pointer;
-}
-
-/* Add media queries for smaller screens */
-@media screen and (max-width:720px) {
-
-  .weekdays li,
-  .days li {
-    width: 13.1%;
-  }
-}
-
-@media screen and (max-width: 420px) {
-
-  .weekdays li,
-  .days li {
-    width: 12.5%;
-  }
-
-  .days li .active {
-    padding: 2px;
-  }
-}
-
-@media screen and (max-width: 290px) {
-
-  .weekdays li,
-  .days li {
-    width: 12.2%;
-  }
-}
-
-.entry-modal {
+/* The Modal (background) */
+.modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -171,12 +26,12 @@ body {
 }
 
 /* Modal Content/Box */
-.entry-modal-content {
+.modal-content {
   background-color: #fefefe;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
-  width: 30%; /* Could be more or less, depending on screen size */
+  width: 80%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button */
@@ -192,43 +47,4 @@ body {
   color: black;
   text-decoration: none;
   cursor: pointer;
-}
-
-.entry-modal-header {
-  padding: 2px 16px;
-}
-
-/* Modal Body */
-.entry-modal-body {padding: 2px 16px;}
-
-/* Modal Footer */
-.entry-modal-footer {
-  padding: 2px 16px;
-}
-
-/* Modal Content */
-.entry-modal-content {
-  position: relative;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0;
-  border: 1px solid #888;
-  width: 50%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  animation-name: animatetop;
-  animation-duration: 0.4s
-}
-
-/* Add Animation */
-@keyframes animatetop {
-  from {top: -300px; opacity: 0}
-  to {top: 0; opacity: 1}
-}
-
-#daily-color {
-  width: 20px;
-  height: 20px;
-  border: 1px gray solid;
-  background-color: lightgreen;
-  margin-top: 10px;
 }
