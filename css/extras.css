@@ -314,3 +314,10 @@ body {
   border-radius: 50%;
   display: inline-block;
 }
+
+#add{
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  background-color: #1ABC9C;
+}

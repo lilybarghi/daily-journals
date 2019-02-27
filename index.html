@@ -35,7 +35,7 @@
         <a href="profile.html" class="w3-bar-item w3-button w3-hide-small">PROFILE</a>
         <a href="settings.html" class="w3-bar-item w3-button w3-hide-small">SETTINGS</a>
         <!--button to add journal entry-->
-        <a class="w3-bar-item w3-button w3-hide-small" v-b-modal="'journalEntryModal'">ADD ENTRY</a>
+        <a id = "add" class="w3-bar-item w3-button w3-hide-small" v-b-modal="'journalEntryModal'">ADD ENTRY</a>
       </div>
 
       <!-- Navbar on small screens -->
@@ -54,24 +54,21 @@
 
           </div>
           <div class="entry-modal-body">
-              <div class="row">
-                  <h4 class="col-sm-11" id="entry-title"></h4>
-                </div>
             <div class="row">
               <h4 class="col-sm-3"><strong>Daily Color: </strong></h4>
               <div id="daily-color" class="col-sm-1"></div>
             </div>
             <div class="row">
-              <h4 class="col-sm-12"><strong>Emotions: </strong><span id="list-emotions"></span></h4>
+              <h4 class="col-sm-12"><strong>Emotions: </strong> Angry, Stressed, Excited</h4>
             </div>
-            <div class="row">
-                <h4 class="col-sm-12"><strong>Goal: </strong><span id="entry-goal"></span></h4>
-              </div>
             <div class="row">
               <h4 class="col-sm-12"><strong>Journal Entry</strong></h4>
             </div>
             <div class="row">
-              <div class="col-sm-12" id="entry-text"></div>
+              <div class="col-sm-12">Today was an overall good day. I'm feeling really
+                stressed because I have a million assignments to do and it feels
+                like I have no time to do them. I'm excited for the weekend to be
+                here.</div>
             </div>
 
           </div>
@@ -81,23 +78,32 @@
 
 
       <!--modal for form -->
-      <b-modal ref="journalEntryModalRef" id="journalEntryModal" size="lg" @ok="addEntry" @shown="clearEntry" ok-only
-        title="Create New Journal Entry">
+      <b-modal ref="journalEntryModalRef" id="journalEntryModal" size="lg" hide-footer title="Create New Journal Entry"
+        text-variant="black">
         <b-container fluid>
-
           <!--form-->
-          <b-form-group class="my-1" label="Date:" label-for="dateForm" label-class="font-weight-bold pt-0">
-            <b-form-input type="date" id="dateForm" v-model="newEntry.id" />
-          </b-form-group>
+          <b-row class="my-1">
+            <b-col sm="2">
+              <label for="date">Current Date:</label>
+            </b-col>
+            <b-col sm="10">
+              <p type="number" id="date">Febuary {{newEntry.id}}, 2019</p>
+            </b-col>
+          </b-row>
 
           <!--title for user-->
-          <b-form-group class="my-1" label="Journal Title:" label-for="title" label-class="font-weight-bold pt-0">
-            <b-form-input type="text" id="title" placeholder="Title" v-model="newEntry.title" />
-          </b-form-group>
+          <b-row class="my-1">
+            <b-col sm="2">
+              <label for="title">Journal Title:</label>
+            </b-col>
+            <b-col sm="10">
+              <b-form-input v-model="newEntry.title" type="text" id="title" placeholder="Title" />
+            </b-col>
+          </b-row>
 
           <!--select one mood for the day-->
-          <b-form-group label="Day's overall mood:" label-for="dayMood" label-class="font-weight-bold pt-0">
-            <b-form-select id="dayMood" v-model="newEntry.color" class="mb-3">
+          <b-form-group label="Day's overall mood:">
+            <b-form-select v-model="newEntry.color" class="mb-3">
               <option value="pink">Great</option>
               <option value="orange">Okay</option>
               <option value="green">Neutral</option>
@@ -107,7 +113,7 @@
           </b-form-group>
 
           <!--user select emotions from here -->
-          <b-form-group label="Emotions felt today:" label-for="emotions" label-class="font-weight-bold pt-0">
+          <b-form-group label="Emotions felt today:">
             <b-form-checkbox-group id="emotions" name="emotion" v-model="newEntry.emotions">
               <b-form-checkbox value="Happy">Happy</b-form-checkbox>
               <b-form-checkbox value="Sad">Sad</b-form-checkbox>
@@ -119,26 +125,86 @@
           </b-form-group>
 
           <!--goal for the day-->
-          <div class="form-group my-1">
-            <label for="goal" class="font-weight-bold">Daily Goal? <span class="font-weight-normal text-muted">(optional)</span></label>
-            <b-form-input v-model="newEntry.goal" type="text" id="goal" placeholder="Enter goal here" />
-          </div>
+          <b-row class="my-1">
+            <b-col sm="2">
+              <label for="goal">Today's Goal:</label>
+            </b-col>
+            <b-col sm="10">
+              <b-form-input v-model="newEntry.goal" type="text" id="goal" placeholder="Optional" />
+            </b-col>
+          </b-row>
 
           <!--Jounral goes here in form -->
-          <b-form-group label="Enter Journal Entry:" label-for="thoughts" label-class="font-weight-bold pt-0">
-            <b-form-textarea id="thoughts" size="lg" type="text" v-model="newEntry.entry" placeholder="Enter your thoughts" />
-          </b-form-group>
+          <b-row class="my-1">
+            <b-col sm="2">
+              <label for="thoughts">Enter Thoughts:</label>
+            </b-col>
+            <b-col sm="10">
+              <b-form-textarea id="thoughts" size="lg" type="text" v-model="newEntry.entry" placeholder="Enter your thoughts" />
+            </b-col>
+          </b-row>
+
+          <!--submit entry-->
+          <b-button @click="addEntry(newEntry)">Submit</b-button>
 
         </b-container>
       </b-modal>
     </div>
 
-    <div id="cal-header">
-      <div class="prev" onclick="handle_prev()">&#10094;</div>
-      <div id="month-name"></div>
-      <div class="next" onclick="handle_next()">&#10095;</div>
+    <!--calendar-->
+    <div class="month">
+      <ul>
+        <li class="prev">&#10094;</li>
+        <li class="next">&#10095;</li>
+        <li>Febuary</li>
+        <li><span style="font-size:18px">2019</span></li>
+      </ul>
     </div>
-    <div id="calendar"></div>
+
+    <ul class="weekdays">
+      <li>Mo</li>
+      <li>Tu</li>
+      <li>We</li>
+      <li>Th</li>
+      <li>Fr</li>
+      <li>Sa</li>
+      <li>Su</li>
+    </ul>
+
+    <ul class="days">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>6</li>
+      <li>7</li>
+      <li>8</li>
+      <li>9</li>
+      <li><span class="active">10</span></li>
+      <li>11</li>
+      <li>12</li>
+      <li>13</li>
+      <li>14</li>
+      <li>15</li>
+      <li>16</li>
+      <li>17</li>
+      <li>18</li>
+      <li>19</li>
+      <li>20</li>
+      <li>21</li>
+      <li>22</li>
+      <li>23</li>
+      <li>24</li>
+      <li>25</li>
+      <li>26</li>
+      <li>27</li>
+      <li>28</li>
+    </ul>
 
 
     <!--statistic part maybe used for gamifcation later-->
@@ -172,7 +238,6 @@
       <p>{{journal.emotions}}</p>
       <p>{{journal.goal}}</p>
       <p>{{journal.entry}}</p>
-      <p>{{journal.date}}</p>
     </b-container>
 
   </div>
@@ -225,57 +290,21 @@
           color: "purple",
           emotions: ["joyful", "confused"],
           goal: "Be punctual!",
-          entry: "This was a great day.",
-          date: Date.now()
-        },
-        {
-          id: 9,
-          title: "What a day",
-          color: "green",
-          emotions: ["stressed"],
-          goal: "Get 10,000 steps",
-          entry: "This was a great day.",
-          date: 1551153187000
-        },
-        {
-          id: 10,
-          title: "Journal entry #10",
-          color: "red",
-          emotions: ["content", "carefree"],
-          goal: "Eat breakfast",
-          entry: "This was a great day.",
-          date: 1550548387000
+          entry: "This was a great day."
         }],
         newEntry: {
-          id: "",
+          id: 8,
           title: "",
           color: "",
           emotions: [],
           goal: "",
-          entry: "",
-          date: 0
+          entry: ""
         }
       },
       methods: {
-        //adds entry to the journals data struct
-        addEntry(evt) {
-          evt.preventDefault()
-          //adds the unix timestamp to be added to the journal enteries 
-          this.newEntry.date = Date.parse(this.newEntry.id)
-          this.journals.push(this.newEntry)
-          this.$nextTick(() => {
-            this.$refs.journalEntryModalRef.hide()
-          })
-        },
-        //clears the new entry data struct
-        clearEntry() {
-          this.newEntry.id = "";
-          this.newEntry.title = ""
-          this.newEntry.color = ""
-          this.newEntry.goal = ""
-          this.newEntry.entry = ""
-          this.newEntry.emotions = []
-          this.newEntry.date = 0
+        addEntry(newEntry) {
+          this.journals.push(newEntry);
+          this.$refs.journalEntryModalRef.hide()
         }
       },
       computed: {}
