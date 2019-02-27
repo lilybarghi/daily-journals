@@ -160,6 +160,8 @@ function handle_calendar(month, year) {
                 }
                 if ((date === thePresent.getDate()) && (year === thePresent.getFullYear()) && (month === thePresent.getMonth() && (todaysJournal !== undefined))){
                     day.setAttribute("class", "active day has-journal"); //set ID for today's date so it can be marked with CSS
+                } else if ((todaysJournal !== undefined)){
+                    day.setAttribute("class", "day has-journal");
                 } else if((date === thePresent.getDate()) && (year === thePresent.getFullYear()) && (month === thePresent.getMonth())) {
                     day.setAttribute("class", "active day");
                 } else {
