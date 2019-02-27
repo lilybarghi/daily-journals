@@ -1,4 +1,5 @@
 $(document).ready( function() { 
+    journals = window.app.journals;
     thePresent = new Date();
     currMonth = thePresent.getMonth();
     currYear = thePresent.getFullYear();
@@ -10,8 +11,26 @@ $(document).ready( function() {
         let modal = $("#myModal");
         modal.css("display", "block");
         let day = this.innerHTML;
+        day = day.substr(25);
+        let entry = journals.find((journal) => {
+            let journalDate = new Date(journal.date);
+            return (journalDate.getMonth() == currMonth) && (journalDate.getDate() == day) && (journalDate.getFullYear() == currYear);
+        })
+        console.log(entry);
+        if(entry === undefined) {
+            let modal = $("#myModal");
+            modal.css("display", "none");
+            return;
+        }
         $("#header-date").html(months[currMonth] + " " + day + ", " + currYear);
-        console.log(day);
+        $("#entry-title").html("<strong>" + entry.title + "</strong>");
+        let emotions = entry.emotions.join(', ');
+        console.log(emotions);
+        $("#list-emotions").html(emotions);
+        $("#entry-goal").html(entry.goal);
+        $("#entry-text").html(entry.entry);
+
+        
     });
 
     $(".close").click(function() {
@@ -55,6 +74,7 @@ function handle_next() {
 }
 
 function handle_calendar(month, year) {
+    
     //disply the month and year above calendar
     header = document.getElementById("month-name");
     header.innerHTML = months[month] + year;
@@ -127,11 +147,25 @@ function handle_calendar(month, year) {
             }
             else {
                 day = document.createElement("td");
-                if ((date === thePresent.getDate()) && (year === thePresent.getFullYear()) && (month === thePresent.getMonth())){
-                    day.setAttribute("class", "active day"); //set ID for today's date so it can be marked with CSS
+                let todaysJournal = journals.find((journal) => {
+                    let journalDate = new Date(journal.date);
+                    return (journalDate.getMonth() == month) && (journalDate.getDate() == date) && (journalDate.getFullYear() == year);
+                })
+
+                if(todaysJournal !== undefined) {
+                    day.setAttribute("id", todaysJournal.id);
+                    let span = document.createElement("span");
+                    span.setAttribute("class", "dot");
+                    day.appendChild(span);
+                }
+                if ((date === thePresent.getDate()) && (year === thePresent.getFullYear()) && (month === thePresent.getMonth() && (todaysJournal !== undefined))){
+                    day.setAttribute("class", "active day has-journal"); //set ID for today's date so it can be marked with CSS
+                } else if((date === thePresent.getDate()) && (year === thePresent.getFullYear()) && (month === thePresent.getMonth())) {
+                    day.setAttribute("class", "active day");
                 } else {
                     day.setAttribute("class", "day")
                 }
+            
                 // day.onclick = function() { modal.style.display = "block"; }
                 dayNum = document.createTextNode(date);
                 day.appendChild(dayNum);
