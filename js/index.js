@@ -196,14 +196,14 @@ function validateForm() {
     var title_elem = document.getElementById("title");
     var title = title_elem.value;
     if (title == "") {
-        return False;
+        return false;
     }
 
     // validate mood
     var mood_elem = document.getElementById("dayMood");
     var mood = mood_elem.options[mood_elem.selectedIndex].value;
     if (!mood) {
-        return False;
+        return false;
     }
 
     // validate emotions
@@ -213,14 +213,14 @@ function validateForm() {
         if (items[i].type == "checkbox" && items[i].checked == True) {
             break;
         }
-        return False;
+        return false;
     }
 
     // validate entry
     var entry_elem = document.getElementsById("thoughts");
     var entry = entry_elem.value;
     if (entry == "") {
-        return False;
+        return false;
     }
 }
 
