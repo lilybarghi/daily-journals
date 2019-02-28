@@ -191,4 +191,36 @@ function handle_calendar(month, year) {
     }
 }
 
+function validateForm() {
+    // validate title
+    var title_elem = document.getElementById("title");
+    var title = title_elem.value;
+    if (title == "") {
+        return False;
+    }
+
+    // validate mood
+    var mood_elem = document.getElementById("dayMood");
+    var mood = mood_elem.options[mood_elem.selectedIndex].value;
+    if (!mood) {
+        return False;
+    }
+
+    // validate emotions
+    var items = document.getElementsByName("emotions");
+    var selectedItems = ""
+    for (var i = 0; i < items.length; i++) {
+        if (items[i].type == "checkbox" && items[i].checked == True) {
+            break;
+        }
+        return False;
+    }
+
+    // validate entry
+    var entry_elem = document.getElementsById("thoughts");
+    var entry = entry_elem.value;
+    if (entry == "") {
+        return False;
+    }
+}
 

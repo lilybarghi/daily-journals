@@ -85,7 +85,7 @@
         title="Create New Journal Entry">
         <b-container fluid>
 
-          <!--form-->
+          <!--date-->
           <b-form-group class="my-1" label="Date:" label-for="dateForm" label-class="font-weight-bold pt-0">
             <b-form-input type="date" id="dateForm" v-model="newEntry.id" />
           </b-form-group>
@@ -109,12 +109,12 @@
           <!--user select emotions from here -->
           <b-form-group label="Emotions felt today:" label-for="emotions" label-class="font-weight-bold pt-0">
             <b-form-checkbox-group id="emotions" name="emotion" v-model="newEntry.emotions">
-              <b-form-checkbox value="Happy">Happy</b-form-checkbox>
-              <b-form-checkbox value="Sad">Sad</b-form-checkbox>
-              <b-form-checkbox value="Angry">Angry</b-form-checkbox>
-              <b-form-checkbox value="Excited">Excited</b-form-checkbox>
-              <b-form-checkbox value="Joyful">Joyful</b-form-checkbox>
-              <b-form-checkbox value="Confused">Confused</b-form-checkbox>
+              <b-form-checkbox value="Happy" name="emotions">Happy</b-form-checkbox>
+              <b-form-checkbox value="Sad" name="emotions">Sad</b-form-checkbox>
+              <b-form-checkbox value="Angry" name="emotions">Angry</b-form-checkbox>
+              <b-form-checkbox value="Excited" name="emotions">Excited</b-form-checkbox>
+              <b-form-checkbox value="Joyful" name="emotions">Joyful</b-form-checkbox>
+              <b-form-checkbox value="Confused" name="emotions">Confused</b-form-checkbox>
             </b-form-checkbox-group>
           </b-form-group>
 
@@ -262,6 +262,9 @@
           this.$nextTick(() => {
             this.$refs.journalEntryModalRef.hide()
           })
+         if (validateForm() == False) {
+           alert("The title, daily mood, emotions, and journal entry must be filled out");
+         }
         },
         //clears the new entry data struct
         clearEntry() {
