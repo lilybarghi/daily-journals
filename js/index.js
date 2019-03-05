@@ -1,37 +1,15 @@
+
+
+let thePresent = new Date();
+let currMonth = thePresent.getMonth();
+let currYear = thePresent.getFullYear();
+let months = ["January ", "February ", "March ", "April ", "May ", "June ", "July ", "August ", "September ", "October ", "November ", "December "]
+
+
+
 $(document).ready( function() { 
-    journals = window.app.journals;
-    thePresent = new Date();
-    currMonth = thePresent.getMonth();
-    currYear = thePresent.getFullYear();
-    months = ["January ", "February ", "March ", "April ", "May ", "June ", "July ", "August ", "September ", "October ", "November ", "December "]
-
+    let journals = window.app.journals;
     handle_calendar(currMonth, currYear);
-
-    $(".day").click(function() {
-        let modal = $("#myModal");
-        modal.css("display", "block");
-        let day = this.innerHTML;
-        day = day.substr(25);
-        let entry = journals.find((journal) => {
-            let journalDate = new Date(journal.date);
-            return (journalDate.getMonth() == currMonth) && (journalDate.getDate() == day) && (journalDate.getFullYear() == currYear);
-        })
-        console.log(entry);
-        if(entry === undefined) {
-            let modal = $("#myModal");
-            modal.css("display", "none");
-            return;
-        }
-        $("#header-date").html(months[currMonth] + " " + day + ", " + currYear);
-        $("#entry-title").html("<strong>" + entry.title + "</strong>");
-        let emotions = entry.emotions.join(', ');
-        console.log(emotions);
-        $("#list-emotions").html(emotions);
-        $("#entry-goal").html(entry.goal);
-        $("#entry-text").html(entry.entry);
-
-        
-    });
 
     $(".close").click(function() {
         let modal = $("#myModal");
@@ -74,32 +52,33 @@ function handle_next() {
 }
 
 function handle_calendar(month, year) {
+    let journals = window.app.journals;
     
     //disply the month and year above calendar
-    header = document.getElementById("month-name");
+    let header = document.getElementById("month-name");
     header.innerHTML = months[month] + year;
 
     //clear calendar initially
-    cal = document.getElementById("calendar");
+    let cal = document.getElementById("calendar");
     cal.innerHTML = "";
     
     //get number of days in the month
-    monthStart = new Date(year, month, 1); //ex) month = 0, Jan 1
-    monthEnd = new Date(year, month + 1, 1); //ex) month = 1, Feb 1
-    monthLength =  Math.round((monthEnd - monthStart) / (1000 * 60 * 60 * 24)); //convert from milliseconds to day
+    let monthStart = new Date(year, month, 1); //ex) month = 0, Jan 1
+    let monthEnd = new Date(year, month + 1, 1); //ex) month = 1, Feb 1
+    let monthLength =  Math.round((monthEnd - monthStart) / (1000 * 60 * 60 * 24)); //convert from milliseconds to day
 
     //get the 1st day of the mongth as a weekday number 0-6 
-    firstWeekday = (new Date(year, month)).getDay(); 
-    row = document.createElement("tr");
+    let firstWeekday = (new Date(year, month)).getDay(); 
+    let row = document.createElement("tr");
     
-    sunday = document.createTextNode("Sun");
-    monday = document.createTextNode("Mon");
-    tuesday = document.createTextNode("Tues");
-    wednesday = document.createTextNode("Wed");
-    thursday = document.createTextNode("Thurs");
-    friday = document.createTextNode("Fri");
-    saturday = document.createTextNode("Sat");
-    nameOfDay = document.createElement("td");
+    let sunday = document.createTextNode("Sun");
+    let monday = document.createTextNode("Mon");
+    let tuesday = document.createTextNode("Tues");
+    let wednesday = document.createTextNode("Wed");
+    let thursday = document.createTextNode("Thurs");
+    let friday = document.createTextNode("Fri");
+    let saturday = document.createTextNode("Sat");
+    let nameOfDay = document.createElement("td");
     nameOfDay.setAttribute("class", "name-day");
     nameOfDay.appendChild(sunday);
     row.appendChild(nameOfDay);
@@ -129,8 +108,8 @@ function handle_calendar(month, year) {
     row.appendChild(nameOfDay);
     cal.appendChild(row);
 
-    date = 1;
-    count = 0;
+    let date = 1;
+    let count = 0;
     for (i = 0; i < 6; i++) {
         row = document.createElement("tr"); //create a row for a week of the calendar
         for (j = 0; j < 7; j++) {           //create a column for a day of the week
@@ -160,8 +139,10 @@ function handle_calendar(month, year) {
                 }
                 if ((date === thePresent.getDate()) && (year === thePresent.getFullYear()) && (month === thePresent.getMonth() && (todaysJournal !== undefined))){
                     day.setAttribute("class", "active day has-journal"); //set ID for today's date so it can be marked with CSS
+                    day.setAttribute("onclick", "showEntry(this)");
                 } else if ((todaysJournal !== undefined)){
                     day.setAttribute("class", "day has-journal");
+                    day.setAttribute("onclick", "showEntry(this)");
                 } else if((date === thePresent.getDate()) && (year === thePresent.getFullYear()) && (month === thePresent.getMonth())) {
                     day.setAttribute("class", "active day");
                 } else {
@@ -189,6 +170,32 @@ function handle_calendar(month, year) {
         }
         cal.appendChild(row);
     }
+}
+
+function showEntry(dayObj) {
+    let journals = window.app.journals;
+    let modal = $("#myModal");
+    modal.css("display", "block");
+    let day = dayObj.innerHTML;
+    day = day.substr(25);
+    console.log(day);
+    let entry = journals.find((journal) => {
+        let journalDate = new Date(journal.date);
+        return (journalDate.getMonth() == currMonth) && (journalDate.getDate() == day) && (journalDate.getFullYear() == currYear);
+    })
+    console.log(entry);
+    if(entry === undefined) {
+        let modal = $("#myModal");
+        modal.css("display", "none");
+        return;
+    }
+    $("#header-date").html(months[currMonth] + " " + day + ", " + currYear);
+    $("#entry-title").html("<strong>" + entry.title + "</strong>");
+    let emotions = entry.emotions.join(', ');
+    console.log(emotions);
+    $("#list-emotions").html(emotions);
+    $("#entry-goal").html(entry.goal);
+    $("#entry-text").html(entry.entry);
 }
 
 function validateForm() {

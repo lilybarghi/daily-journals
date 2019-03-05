@@ -165,7 +165,7 @@
 
 
 
-    <!--<b-container v-for="journal in journals" :key="journal.id">
+    <b-container v-for="journal in journals" :key="journal.id">
       <p>{{journal.id}}</p>
       <p>{{journal.title}}</p>
       <p>{{journal.color}}</p>
@@ -173,7 +173,7 @@
       <p>{{journal.goal}}</p>
       <p>{{journal.entry}}</p>
       <p>{{journal.date}}</p>
-    </b-container>-->
+    </b-container>
 
   </div>
   <!--end app div-->
@@ -222,7 +222,7 @@
           emotions: ["joyful", "confused"],
           goal: "Be punctual!",
           entry: "This was a great day.",
-          date: 1551154585000
+          date: Date.now()
         },
         {
           id: 9,
