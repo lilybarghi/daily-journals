@@ -1,38 +1,12 @@
-$(document).ready( function() { 
-    journals = window.app.journals;
-    thePresent = new Date();
-    currMonth = thePresent.getMonth();
-    currYear = thePresent.getFullYear();
-    months = ["January ", "February ", "March ", "April ", "May ", "June ", "July ", "August ", "September ", "October ", "November ", "December "]
+let thePresent = new Date();
+let currMonth = thePresent.getMonth();
+let currYear = thePresent.getFullYear();
+let months = ["January ", "February ", "March ", "April ", "May ", "June ", "July ", "August ", "September ", "October ", "November ", "December "]
 
+$(document).ready( function() { 
+    let journals = window.app.journals;
     handle_calendar(currMonth, currYear);
     handle_statistics();
-
-    $(".day").click(function() {
-        let modal = $("#myModal");
-        modal.css("display", "block");
-        let day = this.innerHTML;
-        day = day.substr(25);
-        let entry = journals.find((journal) => {
-            let journalDate = new Date(journal.date);
-            return (journalDate.getMonth() == currMonth) && (journalDate.getDate() == day) && (journalDate.getFullYear() == currYear);
-        })
-        console.log(entry);
-        if(entry === undefined) {
-            let modal = $("#myModal");
-            modal.css("display", "none");
-            return;
-        }
-        $("#header-date").html(months[currMonth] + " " + day + ", " + currYear);
-        $("#entry-title").html("<strong>" + entry.title + "</strong>");
-        let emotions = entry.emotions.join(', ');
-        console.log(emotions);
-        $("#list-emotions").html(emotions);
-        $("#entry-goal").html(entry.goal);
-        $("#entry-text").html(entry.entry);
-
-        
-    });
 
     $(".close").click(function() {
         let modal = $("#myModal");
@@ -75,6 +49,7 @@ function handle_next() {
 }
 
 function handle_calendar(month, year) {
+    let journals = window.app.journals;
     
     //disply the month and year above calendar
     header = document.getElementById("month-name");
@@ -161,8 +136,10 @@ function handle_calendar(month, year) {
                 }
                 if ((date === thePresent.getDate()) && (year === thePresent.getFullYear()) && (month === thePresent.getMonth() && (todaysJournal !== undefined))){
                     day.setAttribute("class", "active day has-journal"); //set ID for today's date so it can be marked with CSS
+                    day.setAttribute("onclick", "showEntry(this)");
                 } else if ((todaysJournal !== undefined)){
                     day.setAttribute("class", "day has-journal");
+                    day.setAttribute("onclick", "showEntry(this)");
                 } else if((date === thePresent.getDate()) && (year === thePresent.getFullYear()) && (month === thePresent.getMonth())) {
                     day.setAttribute("class", "active day");
                 } else {
@@ -190,6 +167,32 @@ function handle_calendar(month, year) {
         }
         cal.appendChild(row);
     }
+}
+
+function showEntry(dayObj) {
+    let journals = window.app.journals;
+    let modal = $("#myModal");
+    modal.css("display", "block");
+    let day = dayObj.innerHTML;
+    day = day.substr(25);
+    console.log(day);
+    let entry = journals.find((journal) => {
+        let journalDate = new Date(journal.date);
+        return (journalDate.getMonth() == currMonth) && (journalDate.getDate() == day) && (journalDate.getFullYear() == currYear);
+    })
+    console.log(entry);
+    if(entry === undefined) {
+        let modal = $("#myModal");
+        modal.css("display", "none");
+        return;
+    }
+    $("#header-date").html(months[currMonth] + " " + day + ", " + currYear);
+    $("#entry-title").html("<strong>" + entry.title + "</strong>");
+    let emotions = entry.emotions.join(', ');
+    console.log(emotions);
+    $("#list-emotions").html(emotions);
+    $("#entry-goal").html(entry.goal);
+    $("#entry-text").html(entry.entry);
 }
 
 function validateForm() {
