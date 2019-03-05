@@ -6,6 +6,7 @@ $(document).ready( function() {
     months = ["January ", "February ", "March ", "April ", "May ", "June ", "July ", "August ", "September ", "October ", "November ", "December "]
 
     handle_calendar(currMonth, currYear);
+    handle_statistics();
 
     $(".day").click(function() {
         let modal = $("#myModal");
@@ -221,6 +222,22 @@ function validateForm() {
     var entry = entry_elem.value;
     if (entry == "") {
         return false;
+    }
+}
+
+function handle_statistics() {
+    // get the two html elements
+    var days_journaled_elem = document.getElementById("days_journaled")
+    var streak_elem = document.getElementById("streak")
+
+    // get the number of days journaled
+    var journaled_num = journals.length;
+    days_journaled_elem.innerHTML = journaled_num;
+
+    // get the number of days journaled in a row
+    var streak_num = 0;
+    for (let i = 0; i < journals.length; i++) {
+
     }
 }
 
