@@ -316,8 +316,10 @@ body {
 }
 
 #add{
-  position: fixed;
-  right: 10px;
-  bottom: 10px;
   background-color: #1ABC9C;
+  color: white;
+  width: 100%;
+  height: 50px;
+  text-align:center;
+
 }
