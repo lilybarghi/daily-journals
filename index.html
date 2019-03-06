@@ -35,7 +35,7 @@
       <div class="entry-modal-content">
         <div class="entry-modal-header">
           <h2 id="header-date"></h2>
-          <span class="close">&times;</span>
+          <span class="close" onclick="close_modal(this)">&times;</span>
 
         </div>
         <div class="entry-modal-body">
@@ -161,7 +161,7 @@
 
 
 
-    <!-- <b-container v-for="journal in journals" :key="journal.id">
+     <b-container v-for="journal in journals" :key="journal.id">
       <p>{{journal.id}}</p>
       <p>{{journal.title}}</p>
       <p>{{journal.color}}</p>
@@ -169,7 +169,7 @@
       <p>{{journal.goal}}</p>
       <p>{{journal.entry}}</p>
       <p>{{journal.date}}</p>
-    </b-container> -->
+    </b-container> 
 
   </div>
   </div>
@@ -246,6 +246,10 @@
             this.newEntry.date = Date.parse(this.newEntry.id) + 1000 * 60 * 60 * 6
             this.journals.push(this.newEntry)
             handle_statistics()
+            let thePresent = new Date();
+            let currMonth = thePresent.getMonth();
+            let currYear = thePresent.getFullYear();
+            handle_calendar(currMonth, currYear);
             this.$nextTick(() => {
               this.$refs.journalEntryModalRef.hide()
             })

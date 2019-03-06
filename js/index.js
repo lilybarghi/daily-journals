@@ -187,7 +187,6 @@ function showEntry(dayObj) {
     $("#header-date").html(months[currMonth] + " " + day + ", " + currYear);
     $("#entry-title").html("<strong>" + entry.title + "</strong>");
     let emotions = entry.emotions.join(', ');
-    console.log(emotions);
     $("#list-emotions").html(emotions);
     $("#entry-goal").html(entry.goal);
     $("#entry-text").html(entry.entry);
@@ -267,4 +266,9 @@ function handle_badge() {
         complete_elem.classList.remove("hidden");
         empty_elem.classList.add("hidden");
     }
+}
+
+function close_modal() {
+    let modal = $("#myModal");
+    modal.css("display", "none");
 }
