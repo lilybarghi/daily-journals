@@ -7,6 +7,7 @@ $(document).ready(function () {
     let journals = window.app.journals;
     handle_calendar(currMonth, currYear);
     handle_statistics();
+    handle_badge();
 
     $(".close").click(function () {
         let modal = $("#myModal");
@@ -245,4 +246,25 @@ function handle_statistics() {
             streak_num = 1;
     }
     streak_elem.innerHTML = streak_num;
+}
+
+function handle_badge() {
+    let journals = window.app.journals;
+
+    // get the last date journaled
+    let last_journal = journals[i].date;
+    let journal_date = new Date(last_journal);
+
+    // get todays date
+    let today = new Date();
+
+    // compare the two
+    if ((today.getDate() == journal_date.getDate()) &&
+        (today.getMonth() == journal_date.geMonth())) {
+        var empty_elem = document.getElementById("empty_badge");
+        var complete_elem = document.getElementById("completed_badge");
+
+        complete_elem.classList.remove("hidden");
+        empty_elem.classList.add("hidden");
+    }
 }

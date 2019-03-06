@@ -323,3 +323,17 @@ body {
   text-align:center;
 
 }
+
+#filled_star {
+  color: yellow;
+  font-size: 50px;
+}
+
+#empty_star {
+  color: grey;
+  font-size: 50px;
+}
+
+.hidden {
+  display: none;
+}
