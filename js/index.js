@@ -193,6 +193,13 @@ function showEntry(dayObj) {
 }
 
 function validateForm() {
+    // validate date 
+    var date_elem = document.getElementById("dateForm");
+    var date = date_elem.value;
+    if (date = "") {
+        return false;
+    }
+
     // validate title
     var title_elem = document.getElementById("title");
     var title = title_elem.value;
@@ -223,6 +230,17 @@ function validateForm() {
     if (entry == "") {
         return false;
     }
+
+    return true;
+}
+
+function newDate() {
+    // checking to see if current date has been selected before 
+    let journals = window.app.journals;
+    var date_elem = document.getElementById("dateForm");
+    var date = date_elem.value;
+
+    return true;
 }
 
 function handle_statistics() {
@@ -271,4 +289,13 @@ function handle_badge() {
 function close_modal() {
     let modal = $("#myModal");
     modal.css("display", "none");
+}
+
+function compare(journal1, journal2) {
+    const date1 = journal1.date;
+    const date2 = journal2.date;
+    let comparison = 0;
+    if (date1 < date2) comparison = -1;
+    else if (date1 > date2) comparison = 1;
+    return comparison;
 }
