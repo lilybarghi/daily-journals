@@ -172,12 +172,12 @@ function showEntry(dayObj) {
     modal.css("display", "block");
     let day = dayObj.innerHTML;
     day = day.substr(25);
-    console.log(day);
+    //console.log(day);
     let entry = journals.find((journal) => {
         let journalDate = new Date(journal.date);
         return (journalDate.getMonth() == currMonth) && (journalDate.getDate() == day) && (journalDate.getFullYear() == currYear);
     })
-    console.log(entry);
+    //console.log(entry);
     if (entry === undefined) {
         let modal = $("#myModal");
         modal.css("display", "none");
@@ -240,7 +240,6 @@ function handle_statistics() {
     for (let i = 1; i < journals.length; i++) {
         let dateOld = journals[i - 1].date;
         let dateCurrent = journals[i].date;
-        console.log("currentDate: " + dateCurrent + " old date: " + dateOld);
         if ((dateCurrent - dateOld) <= (24 * 60 * 60 * 1000))
             streak_num++;
         else
