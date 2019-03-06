@@ -234,8 +234,7 @@ function handle_statistics() {
     var streak_elem = document.getElementById("streak")
 
     // get the number of days journaled
-    var journaled_num = journals.length;
-    days_journaled_elem.innerHTML = journaled_num;
+    days_journaled_elem.innerHTML = journals.length;
 
     // get the number of days journaled in a row
     var streak_num = 0;
