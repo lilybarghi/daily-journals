@@ -196,7 +196,7 @@ function validateForm() {
     // validate date 
     var date_elem = document.getElementById("dateForm");
     var date = date_elem.value;
-    if (date = "") {
+    if (!date) {
         return false;
     }
 
@@ -239,7 +239,11 @@ function newDate() {
     let journals = window.app.journals;
     var date_elem = document.getElementById("dateForm");
     var date = date_elem.value;
-
+    for (let i = 1; i < journals.length; i++) {
+        let dateCurrent = journals[i].id;
+        if (dateCurrent === date)
+            return false;
+    }
     return true;
 }
 

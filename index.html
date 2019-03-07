@@ -159,8 +159,6 @@
     </div>
 
 
-
-
     <!-- <b-container v-for="journal in journals" :key="journal.id">
       <p>{{journal.id}}</p>
       <p>{{journal.title}}</p>
@@ -239,9 +237,9 @@
         //adds entry to the journals data struct
         addEntry(evt) {
           evt.preventDefault()
-          if (validateForm() == false) {
+          if (validateForm() === false) {
             alert("The date, title, daily mood, emotions, and journal entry must be filled out");
-          } else if (newDate() == false) {
+          } else if (newDate() === false) {
             alert("This date already has an entry! Please create a journal entry for a new date!");
           } else {
             //adds the unix timestamp to be added to the journal enteries 
