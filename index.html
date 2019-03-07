@@ -145,7 +145,7 @@
         <i class="far fa-star" id="empty_star"></i>
         <p style="padding-top:15px;">Journal today to unlock the badge!</p>
       </div>
-      <div id="completed_badge">
+      <div id="completed_badge" class="hidden">
         <i class="fas fa-star" id="filled_star"></i>
         <p style="padding-top:15px;">You journaled today. Good Job!</p>
       </div>
@@ -247,6 +247,7 @@
             this.journals.push(this.newEntry)
             this.journals.sort(compare)
             handle_statistics()
+            handle_badge()
             let thePresent = new Date();
             let currMonth = thePresent.getMonth();
             let currYear = thePresent.getFullYear();
