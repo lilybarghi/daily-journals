@@ -269,7 +269,7 @@ function handle_badge() {
     let journals = window.app.journals;
 
     // get the last date journaled
-    let last_journal = journals[i].date;
+    let last_journal = journals[journals.length - 1].date;
     let journal_date = new Date(last_journal);
 
     // get todays date
@@ -277,7 +277,7 @@ function handle_badge() {
 
     // compare the two
     if ((today.getDate() == journal_date.getDate()) &&
-        (today.getMonth() == journal_date.geMonth())) {
+        (today.getMonth() == journal_date.getMonth())) {
         var empty_elem = document.getElementById("empty_badge");
         var complete_elem = document.getElementById("completed_badge");
 
