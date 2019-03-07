@@ -316,8 +316,24 @@ body {
 }
 
 #add{
-  position: fixed;
-  right: 10px;
-  bottom: 10px;
   background-color: #1ABC9C;
+  color: white;
+  width: 100%;
+  height: 50px;
+  text-align:center;
+
+}
+
+#filled_star {
+  color: yellow;
+  font-size: 50px;
+}
+
+#empty_star {
+  color: grey;
+  font-size: 50px;
+}
+
+.hidden {
+  display: none;
 }

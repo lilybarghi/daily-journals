@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6690fa18-25d1-4080-8e0d-be5566ac4d6e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/css/extras.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/extras.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/index.js" afterDir="false" />
     </list>
@@ -13,23 +14,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="116" column="63" selection-start-line="116" selection-start-column="63" selection-end-line="116" selection-end-column="63" />
+            <state relative-caret-position="320">
+              <caret line="146" column="31" selection-start-line="146" selection-start-column="31" selection-end-line="146" selection-end-column="31" />
               <folding>
-                <element signature="e#2512#2519#1" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#div#1;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/extras.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="763">
+              <caret line="337" column="16" lean-forward="true" selection-start-line="337" selection-start-column="16" selection-end-line="337" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="705">
-              <caret line="222" column="21" selection-start-line="222" selection-start-column="21" selection-end-line="222" selection-end-column="21" />
+            <state relative-caret-position="328">
+              <caret line="243" column="25" lean-forward="true" selection-start-line="243" selection-start-column="25" selection-end-line="243" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -49,15 +60,16 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/page3.html" />
-        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/css/extras.css" />
         <option value="$PROJECT_DIR$/js/index.js" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="617" />
+    <option name="x" value="746" />
     <option name="y" value="23" />
-    <option name="width" value="1061" />
+    <option name="width" value="932" />
     <option name="height" value="947" />
   </component>
   <component name="ProjectView">
@@ -65,6 +77,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -75,13 +88,17 @@
             <path>
               <item name="daily-journals" type="b2602c69:ProjectViewProjectNode" />
               <item name="daily-journals" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="daily-journals" type="b2602c69:ProjectViewProjectNode" />
+              <item name="daily-journals" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -111,18 +128,20 @@
       <option name="presentableId" value="Default" />
       <updated>1549567500645</updated>
       <workItem from="1549567503684" duration="697000" />
-      <workItem from="1551303666148" duration="2595000" />
+      <workItem from="1551303666148" duration="3103000" />
+      <workItem from="1551744905579" duration="1441000" />
+      <workItem from="1551881826779" duration="1613000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3292000" />
+    <option name="totallyTimeSpent" value="6854000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="617" y="23" width="1061" height="947" extended-state="0" />
+    <frame x="746" y="23" width="932" height="947" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18940137" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2247191" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -150,20 +169,28 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/page3.html" />
-    <entry file="file://$PROJECT_DIR$/js/index.js">
+    <entry file="file://$PROJECT_DIR$/css/extras.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="222" column="21" selection-start-line="222" selection-start-column="21" selection-end-line="222" selection-end-column="21" />
+        <state relative-caret-position="763">
+          <caret line="337" column="16" lean-forward="true" selection-start-line="337" selection-start-column="16" selection-end-line="337" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="116" column="63" selection-start-line="116" selection-start-column="63" selection-end-line="116" selection-end-column="63" />
+        <state relative-caret-position="320">
+          <caret line="146" column="31" selection-start-line="146" selection-start-column="31" selection-end-line="146" selection-end-column="31" />
           <folding>
-            <element signature="e#2512#2519#1" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="243" column="25" lean-forward="true" selection-start-line="243" selection-start-column="25" selection-end-line="243" selection-end-column="25" />
         </state>
       </provider>
     </entry>
