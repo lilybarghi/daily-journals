@@ -83,6 +83,7 @@
         <!--select one mood for the day-->
         <b-form-group label="Day's overall mood:" label-for="dayMood" label-class="font-weight-bold pt-0">
           <b-form-select id="dayMood" v-model="newEntry.color" class="mb-3">
+            <option value="selectOne">Select One</option>
             <option value="pink">Great</option>
             <option value="orange">Okay</option>
             <option value="green">Neutral</option>
@@ -159,7 +160,7 @@
     </div>
 
 
-    <!-- <b-container v-for="journal in journals" :key="journal.id">
+    <b-container v-for="journal in journals" :key="journal.id">
       <p>{{journal.id}}</p>
       <p>{{journal.title}}</p>
       <p>{{journal.color}}</p>
@@ -167,7 +168,7 @@
       <p>{{journal.goal}}</p>
       <p>{{journal.entry}}</p>
       <p>{{journal.date}}</p>
-    </b-container> -->
+    </b-container>
 
   </div>
   </div>
@@ -226,7 +227,7 @@
         newEntry: {
           id: "",
           title: "",
-          color: "",
+          color: "selectOne",
           emotions: [],
           goal: "",
           entry: "",
@@ -239,12 +240,22 @@
           evt.preventDefault()
           if (validateForm() === false) {
             alert("The date, title, daily mood, emotions, and journal entry must be filled out");
-          } else if (newDate() === false) {
-            alert("This date already has an entry! Please create a journal entry for a new date!");
-          } else {
+          }
+          //  else if (newDate() === false) {
+          //   alert("This date already has an entry! Please create a journal entry for a new date!");
+          // } 
+          else {
             //adds the unix timestamp to be added to the journal enteries 
             this.newEntry.date = Date.parse(this.newEntry.id) + 1000 * 60 * 60 * 6
-            this.journals.push(this.newEntry)
+            this.journals.push({
+              id: this.newEntry.id,
+              title: this.newEntry.title,
+              color: this.newEntry.color,
+              emotions: this.newEntry.emotions,
+              goal: this.newEntry.goal,
+              entry: this.newEntry.entry,
+              date: this.newEntry.date
+            })
             this.journals.sort(compare)
             handle_statistics()
             handle_badge()
@@ -261,7 +272,7 @@
         clearEntry() {
           this.newEntry.id = "";
           this.newEntry.title = ""
-          this.newEntry.color = ""
+          this.newEntry.color = "selectOne"
           this.newEntry.goal = ""
           this.newEntry.entry = ""
           this.newEntry.emotions = []

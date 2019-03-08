@@ -210,7 +210,7 @@ function validateForm() {
     // validate mood
     var mood_elem = document.getElementById("dayMood");
     var mood = mood_elem.options[mood_elem.selectedIndex].value;
-    if (!mood) {
+    if (mood === "selectOne") {
         return false;
     }
 
