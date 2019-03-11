@@ -121,7 +121,7 @@
 
         <!--Jounral goes here in form -->
         <b-form-group label="Enter Journal Entry:" label-for="thoughts" label-class="font-weight-bold pt-0">
-          <b-form-textarea id="thoughts" size="lg" type="text" v-model="newEntry.entry" placeholder="Enter your thoughts" />
+          <b-form-textarea id="thoughts" type="text" v-model="newEntry.entry" placeholder="Enter your thoughts" />
         </b-form-group>
 
       </b-container>
@@ -161,13 +161,8 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-5"></div>
-      <div class="col-md-2">
-        <a id="add" class="w3-bar-item w3-button w3-hide-small" v-b-modal="'journalEntryModal'">ADD ENTRY</a>
-      </div>
-    </div>
 
+    <a v-b-modal="'journalEntryModal'" class="addButton"><i class="fas fa-plus" style="color:white"></i></a>
 
     <b-container v-for="journal in journals" :key="journal.id">
       <p>{{journal.id}}</p>

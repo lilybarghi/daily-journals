@@ -259,15 +259,25 @@ function handle_statistics() {
 
     // get the number of days journaled in a row
     var streak_num = 1;
-    for (let i = 1; i < journals.length; i++) {
-        let dateOld = journals[i - 1].date;
-        let dateCurrent = journals[i].date;
-        if ((dateCurrent - dateOld) <= (24 * 60 * 60 * 1000))
-            streak_num++;
-        else
-            streak_num = 1;
+    let secondJourn = journals[journals.length - 2].date;
+    let secondDate = new Date(secondJourn);
+    let latestJourn = journals[journals.length - 1].date;
+    let latestDate = new Date(latestJourn);
+    let today = new Date();
+
+    if ((latestDate.getDate() != today.getDate()) && (secondDate.getDate() != (today.getDate() -  1))) {
+        streak_num = 0;
+    } else {
+        for (let i = 1; i < journals.length; i++) {
+            let secondJournal = journals[i - 1].date;
+            let latestJournal = journals[i].date;
+            if ((latestJournal - secondJournal) <= (24 * 60 * 60 * 1000))
+                streak_num++;
+            else
+                streak_num = 1;
+        }
     }
-    streak_elem.innerHTML = streak_num;
+    streak_elem.innerHTML = streak_num.toString();
 }
 
 function handle_badge() {
