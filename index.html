@@ -42,18 +42,27 @@
           <div class="row">
             <h4 class="col-sm-11" id="entry-title"></h4>
           </div>
+          <br>
           <div class="row">
-            <h4 class="col-sm-3"><strong>Daily Color: </strong></h4>
-            <div id="daily-color" class="col-sm-1"></div>
+            <div class="col-sm-4"><strong>Daily Mood: </strong></div>
+            <div class="col-sm-8"id="daily-mood"></div>
           </div>
+       
+          <hr>
           <div class="row">
-            <h4 class="col-sm-12"><strong>Emotions: </strong><span id="list-emotions"></span></h4>
+            <div class="col-sm-4"><strong>Emotions: </strong></div>
+            <div class="col-sm-8"id="list-emotions"></div>
           </div>
+        
+          <hr>
           <div class="row">
-            <h4 class="col-sm-12"><strong>Goal: </strong><span id="entry-goal"></span></h4>
+            <div class="col-sm-4"><strong>Goal: </strong></div>
+            <div class="col-sm-8" id="entry-goal"></div>
           </div>
+          
+          <hr>
           <div class="row">
-            <h4 class="col-sm-12"><strong>Journal Entry</strong></h4>
+             <div class="col-sm-12"><strong>Journal Entry</strong></div>
           </div>
           <div class="row">
             <div class="col-sm-12" id="entry-text"></div>
@@ -82,13 +91,13 @@
 
         <!--select one mood for the day-->
         <b-form-group label="Day's overall mood:" label-for="dayMood" label-class="font-weight-bold pt-0">
-          <b-form-select id="dayMood" v-model="newEntry.color" class="mb-3">
+          <b-form-select id="dayMood" v-model="newEntry.mood" class="mb-3">
             <option value="selectOne">Select One</option>
-            <option value="pink">Great</option>
-            <option value="orange">Okay</option>
-            <option value="green">Neutral</option>
-            <option value="blue">Bad</option>
-            <option value="purple">Terrible</option>
+            <option value="Great">Great</option>
+            <option value="Okay">Okay</option>
+            <option value="Neutral">Neutral</option>
+            <option value="Bad">Bad</option>
+            <option value="Terrible">Terrible</option>
           </b-form-select>
         </b-form-group>
 
@@ -181,7 +190,7 @@
         journals: [{
             id: "2019-03-01",
             title: "What a day",
-            color: "green",
+            mood: "Great",
             emotions: ["stressed"],
             goal: "Get 10,000 steps",
             entry: "This was an amazing day.",
@@ -190,7 +199,7 @@
           {
             id: "2019-03-02",
             title: "Journal entry #1",
-            color: "red",
+            mood: "Bad",
             emotions: ["content", "carefree"],
             goal: "Eat breakfast",
             entry: "This was a bad day.",
@@ -199,7 +208,7 @@
           {
             id: "2019-03-03",
             title: "This is a title.",
-            color: "purple",
+            mood: "Neutral",
             emotions: ["joyful", "confused"],
             goal: "Be punctual!",
             entry: "This was a great day.",
@@ -208,7 +217,7 @@
           {
             id: "2019-03-05",
             title: "This is a second title.",
-            color: "purple",
+            mood: "Neutral",
             emotions: ["joyful", "confused"],
             goal: "Be punctual!",
             entry: "This was an ok day.",
@@ -217,7 +226,7 @@
           {
             id: "2019-03-06",
             title: "This is a third title.",
-            color: "purple",
+            mood: "Okay",
             emotions: ["joyful", "confused"],
             goal: "Say thank you to someone!",
             entry: "This was a day.",
@@ -227,7 +236,7 @@
         newEntry: {
           id: "",
           title: "",
-          color: "selectOne",
+          mood: "selectOne",
           emotions: [],
           goal: "",
           entry: "",

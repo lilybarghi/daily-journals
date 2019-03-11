@@ -187,6 +187,7 @@ function showEntry(dayObj) {
     $("#header-date").html(months[currMonth] + " " + day + ", " + currYear);
     $("#entry-title").html("<strong>" + entry.title + "</strong>");
     let emotions = entry.emotions.join(', ');
+    $("#daily-mood").html(entry.mood);
     $("#list-emotions").html(emotions);
     $("#entry-goal").html(entry.goal);
     $("#entry-text").html(entry.entry);
