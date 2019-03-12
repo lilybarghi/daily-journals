@@ -13,6 +13,7 @@ html {
   height: 100%;
   color: #777;
   line-height: 1.8;
+  background-color: #616161 !important;
 }
 
 /* Create a Parallax Effect */
@@ -271,7 +272,7 @@ body {
   background-color: #1abc9c;
   font-size: 25px;
   color: white;
-  padding-top: 40px;
+  padding-top: 10px;
   padding-bottom: 10px;
   display: inline-block;
   width: 100%;
