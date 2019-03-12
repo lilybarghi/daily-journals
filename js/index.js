@@ -187,12 +187,13 @@ function showEntry(dayObj) {
     $("#header-date").html(months[currMonth] + " " + day + ", " + currYear);
     $("#entry-title").html("<strong>" + entry.title + "</strong>");
     let emotions = entry.emotions.join(', ');
+    $("#daily-mood").html(entry.mood);
     $("#list-emotions").html(emotions);
     $("#entry-goal").html(entry.goal);
     $("#entry-text").html(entry.entry);
 }
 
-function validateForm() {
+function validateDate() {
     // validate date 
     var date_elem = document.getElementById("dateForm");
     var date = date_elem.value;
@@ -200,37 +201,47 @@ function validateForm() {
         return false;
     }
 
+    return true;
+}
+
+function validateTitle() {
     // validate title
     var title_elem = document.getElementById("title");
     var title = title_elem.value;
     if (title == "") {
         return false;
     }
+    return true;
+}
 
+function validateMood() {
     // validate mood
     var mood_elem = document.getElementById("dayMood");
     var mood = mood_elem.options[mood_elem.selectedIndex].value;
-    if (!mood) {
+    if (mood === "selectOne") {
         return false;
     }
+    return true;
+}
 
+function validateEmotions() {
     // validate emotions
     var items = document.getElementsByName("emotions");
-    var selectedItems = ""
     for (var i = 0; i < items.length; i++) {
-        if (items[i].type == "checkbox" && items[i].checked == True) {
-            break;
+        if (items[i].type === "checkbox" && items[i].checked == true) {
+            return true;
         }
-        return false;
     }
+    return false;
+}
 
+function validateEntry() {
     // validate entry
     var entry_elem = document.getElementById("thoughts");
     var entry = entry_elem.value;
     if (entry == "") {
         return false;
     }
-
     return true;
 }
 
@@ -258,15 +269,25 @@ function handle_statistics() {
 
     // get the number of days journaled in a row
     var streak_num = 1;
-    for (let i = 1; i < journals.length; i++) {
-        let dateOld = journals[i - 1].date;
-        let dateCurrent = journals[i].date;
-        if ((dateCurrent - dateOld) <= (24 * 60 * 60 * 1000))
-            streak_num++;
-        else
-            streak_num = 1;
+    let secondJourn = journals[journals.length - 2].date;
+    let secondDate = new Date(secondJourn);
+    let latestJourn = journals[journals.length - 1].date;
+    let latestDate = new Date(latestJourn);
+    let today = new Date();
+
+    if ((latestDate != today.getDate()) && (secondDate.getDate() != (today.getDate() -  1))) {
+        streak_num = 0;
+    } else {
+        for (let i = 1; i < journals.length; i++) {
+            let secondJournal = journals[i - 1].date;
+            let latestJournal = journals[i].date;
+            if ((latestJournal - secondJournal) <= (24 * 60 * 60 * 1000))
+                streak_num++;
+            else
+                streak_num = 1;
+        }
     }
-    streak_elem.innerHTML = streak_num;
+    streak_elem.innerHTML = streak_num.toString();
 }
 
 function handle_badge() {
