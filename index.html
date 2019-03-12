@@ -276,7 +276,7 @@
             this.journals.push({
               id: this.newEntry.id,
               title: this.newEntry.title,
-              color: this.newEntry.color,
+              mood: this.newEntry.mood,
               emotions: this.newEntry.emotions,
               goal: this.newEntry.goal,
               entry: this.newEntry.entry,
@@ -302,7 +302,7 @@
           this.entrySaved = false
           this.newEntry.id = "";
           this.newEntry.title = ""
-          this.newEntry.color = "selectOne"
+          this.newEntry.mood = "selectOne"
           this.newEntry.goal = ""
           this.newEntry.entry = ""
           this.newEntry.emotions = []
