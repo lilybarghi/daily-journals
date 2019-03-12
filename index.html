@@ -81,13 +81,25 @@
       <b-container fluid>
 
         <!--error alerts-->
-        <b-alert variant="danger" dismissible v-model="fillEntries">
-              The date, title, daily mood, emotions, and journal entry must be filled out!
+        <b-alert variant="danger" dismissible v-model="fillDate">
+            The date is required!
         </b-alert>
-
         <b-alert variant="warning" dismissible v-model="newDate">
             This date already has an entry! Please create a journal entry for a new date!
-       </b-alert>
+        </b-alert>
+        <b-alert variant="danger" dismissible v-model="fillTitle">
+            The title is required!
+        </b-alert>
+        <b-alert variant="danger" dismissible v-model="fillMood">
+            The mood entry is required!
+        </b-alert>
+        <b-alert variant="danger" dismissible v-model="fillEmotions">
+            The emotion entry is required!
+        </b-alert>
+        <b-alert variant="danger" dismissible v-model="fillJournal">
+            The journal entry is required!
+        </b-alert>
+       
 
         <!--date-->
         <b-form-group class="my-1" label="Date:" label-for="dateForm" label-class="font-weight-bold pt-0">
@@ -113,7 +125,7 @@
 
         <!--user select emotions from here -->
         <b-form-group label="Emotions felt today:" label-for="emotions" label-class="font-weight-bold pt-0">
-          <b-form-checkbox-group id="emotions" name="emotion" v-model="newEntry.emotions">
+          <b-form-checkbox-group id="emotions" name="emotions" v-model="newEntry.emotions">
             <b-form-checkbox value="Happy" name="emotions">Happy</b-form-checkbox>
             <b-form-checkbox value="Sad" name="emotions">Sad</b-form-checkbox>
             <b-form-checkbox value="Angry" name="emotions">Angry</b-form-checkbox>
@@ -183,7 +195,7 @@
    <!-- <b-container v-for="journal in journals" :key="journal.id">
       <p>{{journal.id}}</p>
       <p>{{journal.title}}</p>
-      <p>{{journal.color}}</p>
+      <p>{{journal.mood}}</p>
       <p>{{journal.emotions}}</p>
       <p>{{journal.goal}}</p>
       <p>{{journal.entry}}</p>
@@ -253,19 +265,39 @@
           entry: "",
           date: 0
         },
-        fillEntries: false,
+        fillDate: false,
+        fillMood: false,
+        fillEmotions: false,
+        fillJournal: false,
+        fillTitle: false,
         newDate: false,
         entrySaved: false
       },
       methods: {
         //adds entry to the journals data struct
         addEntry(evt) {
-          this.fillEntries = false;
           this.newDate = false;
           this.entrySaved = false;
+          this.fillDate = false;
+          this.fillMood = false;
+          this.fillEmotions = false;
+          this.fillJournal = false;
+          this.fillTitle = false;
           evt.preventDefault()
-          if (validateForm() === false) {
-            this.fillEntries = true;
+          if (validateTitle() === false) {
+            this.fillTitle = true;
+          }
+          if (validateMood() === false) {
+            this.fillMood = true;
+          }
+          if (validateEmotions() === false) {
+            this.fillEmotions = true;
+          }
+          if (validateEntry() === false) {
+            this.fillJournal = true;
+          }
+          if (validateDate() === false) {
+            this.fillDate = true;
           }
           else if (newDate() === false) {
             this.newDate = true;
@@ -297,9 +329,13 @@
         },
         //clears the new entry data struct
         clearEntry() {
-          this.fillEntries = false
-          this.newDate = false
-          this.entrySaved = false
+          this.newDate = false;
+          this.entrySaved = false;
+          this.fillDate = false;
+          this.fillMood = false;
+          this.fillEmotions = false;
+          this.fillJournal = false;
+          this.fillTitle = false;
           this.newEntry.id = "";
           this.newEntry.title = ""
           this.newEntry.mood = "selectOne"

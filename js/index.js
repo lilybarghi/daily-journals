@@ -193,7 +193,7 @@ function showEntry(dayObj) {
     $("#entry-text").html(entry.entry);
 }
 
-function validateForm() {
+function validateDate() {
     // validate date 
     var date_elem = document.getElementById("dateForm");
     var date = date_elem.value;
@@ -201,37 +201,47 @@ function validateForm() {
         return false;
     }
 
+    return true;
+}
+
+function validateTitle() {
     // validate title
     var title_elem = document.getElementById("title");
     var title = title_elem.value;
     if (title == "") {
         return false;
     }
+    return true;
+}
 
+function validateMood() {
     // validate mood
     var mood_elem = document.getElementById("dayMood");
     var mood = mood_elem.options[mood_elem.selectedIndex].value;
     if (mood === "selectOne") {
         return false;
     }
+    return true;
+}
 
+function validateEmotions() {
     // validate emotions
     var items = document.getElementsByName("emotions");
-    var selectedItems = ""
     for (var i = 0; i < items.length; i++) {
-        if (items[i].type == "checkbox" && items[i].checked == True) {
-            break;
+        if (items[i].type === "checkbox" && items[i].checked == true) {
+            return true;
         }
-        return false;
     }
+    return false;
+}
 
+function validateEntry() {
     // validate entry
     var entry_elem = document.getElementById("thoughts");
     var entry = entry_elem.value;
     if (entry == "") {
         return false;
     }
-
     return true;
 }
 
