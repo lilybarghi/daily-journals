@@ -79,6 +79,15 @@
       title="Create New Journal Entry">
       <b-container fluid>
 
+        <!--error alerts-->
+        <b-alert variant="danger" dismissible v-model="fillEntries">
+              The date, title, daily mood, emotions, and journal entry must be filled out
+        </b-alert>
+
+        <b-alert variant="warning" dismissible v-model="newDate">
+            This date already has an entry! Please create a journal entry for a new date!
+       </b-alert>
+
         <!--date-->
         <b-form-group class="my-1" label="Date:" label-for="dateForm" label-class="font-weight-bold pt-0">
           <b-form-input type="date" id="dateForm" v-model="newEntry.id" />
@@ -127,13 +136,17 @@
       </b-container>
     </b-modal>
 
-
     <div id="cal-header">
       <div class="prev" onclick="handle_prev()">&#10094;</div>
       <div id="month-name"></div>
       <div class="next" onclick="handle_next()">&#10095;</div>
     </div>
     <div id="calendar"></div>
+
+    <b-alert variant="success" dismissible v-model="entrySaved" @dismissed="dismissCountDown=0"
+    @dismiss-count-down="countDownChanged">
+        Entry Saved! 
+   </b-alert>
 
 
     <!--statistic part maybe used for gamifcation later-->
@@ -164,6 +177,7 @@
 
     <a v-b-modal="'journalEntryModal'" class="addButton"><i class="fas fa-plus" style="color:white"></i></a>
 
+
    <!-- <b-container v-for="journal in journals" :key="journal.id">
       <p>{{journal.id}}</p>
       <p>{{journal.title}}</p>
@@ -172,7 +186,7 @@
       <p>{{journal.goal}}</p>
       <p>{{journal.entry}}</p>
       <p>{{journal.date}}</p>
-    </b-container>-->
+    </b-container> -->
 
   </div>
   </div>
@@ -210,7 +224,7 @@
             date: Date.parse("2019-03-03") + 1000 * 60 * 60 * 6
           },
           {
-            id: "2019-03-05",
+            id: "2019-03-10",
             title: "This is a second title.",
             mood: "Neutral",
             emotions: ["joyful", "confused"],
@@ -219,7 +233,7 @@
             date: Date.parse("2019-03-10") + 1000 * 60 * 60 * 6
           },
           {
-            id: "2019-03-06",
+            id: "2019-03-11",
             title: "This is a third title.",
             mood: "Okay",
             emotions: ["joyful", "confused"],
@@ -236,18 +250,26 @@
           goal: "",
           entry: "",
           date: 0
-        }
+        },
+        dismissSecs: 10,
+        dismissCountDown: 0,
+        fillEntries: false,
+        newDate: false,
+        entrySaved: false
       },
       methods: {
         //adds entry to the journals data struct
         addEntry(evt) {
+          this.fillEntries = false;
+          this.newDate = false;
+          this.entrySaved = false;
           evt.preventDefault()
           if (validateForm() === false) {
-            alert("The date, title, daily mood, emotions, and journal entry must be filled out");
+            this.fillEntries = true;
           }
-          //  else if (newDate() === false) {
-          //   alert("This date already has an entry! Please create a journal entry for a new date!");
-          // } 
+           else if (newDate() === false) {
+            this.newDate = true;
+          } 
           else {
             //adds the unix timestamp to be added to the journal enteries 
             this.newEntry.date = Date.parse(this.newEntry.id) + 1000 * 60 * 60 * 6
@@ -270,6 +292,8 @@
             this.$nextTick(() => {
               this.$refs.journalEntryModalRef.hide()
             })
+            this.entrySaved = true; 
+            this.dismissCountDown = this.dismissSecs;
           }
         },
         //clears the new entry data struct
@@ -281,6 +305,9 @@
           this.newEntry.entry = ""
           this.newEntry.emotions = []
           this.newEntry.date = 0
+        },
+        countDownChanged(dismissCountDown) {
+         this.dismissCountDown = dismissCountDown
         }
       },
       computed: {}

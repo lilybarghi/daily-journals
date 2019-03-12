@@ -265,7 +265,7 @@ function handle_statistics() {
     let latestDate = new Date(latestJourn);
     let today = new Date();
 
-    if ((latestDate.getDate() != today.getDate()) && (secondDate.getDate() != (today.getDate() -  1))) {
+    if ((latestDate != today.getDate()) && (secondDate.getDate() != (today.getDate() -  1))) {
         streak_num = 0;
     } else {
         for (let i = 1; i < journals.length; i++) {
