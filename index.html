@@ -30,6 +30,7 @@
   <div id="app">
 
 
+    <!--past journal entry modal-->
     <div id="myModal" class="entry-modal">
 
       <div class="entry-modal-content">
@@ -81,7 +82,7 @@
 
         <!--error alerts-->
         <b-alert variant="danger" dismissible v-model="fillEntries">
-              The date, title, daily mood, emotions, and journal entry must be filled out
+              The date, title, daily mood, emotions, and journal entry must be filled out!
         </b-alert>
 
         <b-alert variant="warning" dismissible v-model="newDate">
@@ -135,18 +136,19 @@
 
       </b-container>
     </b-modal>
+    
+    <!--alert for entry saved-->
+    <b-alert variant="primary" dismissible v-model="entrySaved">
+        Entry Saved! 
+    </b-alert>
 
+    <!--HTML for calendar -->
     <div id="cal-header">
       <div class="prev" onclick="handle_prev()">&#10094;</div>
       <div id="month-name"></div>
       <div class="next" onclick="handle_next()">&#10095;</div>
     </div>
     <div id="calendar"></div>
-
-    <b-alert variant="primary" dismissible v-model="entrySaved" @dismissed="dismissCountDown=0"
-    @dismiss-count-down="countDownChanged">
-        Entry Saved! 
-   </b-alert>
 
 
     <!--statistic part maybe used for gamifcation later-->
@@ -251,8 +253,6 @@
           entry: "",
           date: 0
         },
-        dismissSecs: 10,
-        dismissCountDown: 0,
         fillEntries: false,
         newDate: false,
         entrySaved: false
@@ -267,7 +267,7 @@
           if (validateForm() === false) {
             this.fillEntries = true;
           }
-           else if (newDate() === false) {
+          else if (newDate() === false) {
             this.newDate = true;
           } 
           else {
@@ -293,11 +293,13 @@
               this.$refs.journalEntryModalRef.hide()
             })
             this.entrySaved = true; 
-            this.dismissCountDown = this.dismissSecs;
           }
         },
         //clears the new entry data struct
         clearEntry() {
+          this.fillEntries = false
+          this.newDate = false
+          this.entrySaved = false
           this.newEntry.id = "";
           this.newEntry.title = ""
           this.newEntry.color = "selectOne"
@@ -305,9 +307,6 @@
           this.newEntry.entry = ""
           this.newEntry.emotions = []
           this.newEntry.date = 0
-        },
-        countDownChanged(dismissCountDown) {
-         this.dismissCountDown = dismissCountDown
         }
       },
       computed: {}
