@@ -108,6 +108,7 @@ function handle_calendar(month, year) {
     count = 0;
     for (i = 0; i < 6; i++) {
         row = document.createElement("tr"); //create a row for a week of the calendar
+        row.setAttribute("class", "row"+i);
         for (j = 0; j < 7; j++) { //create a column for a day of the week
             if (date > monthLength) {
                 break; //stop generating days when limit is reached
@@ -164,6 +165,17 @@ function handle_calendar(month, year) {
             count += difference;
         }
         cal.appendChild(row);
+    }
+    colCount = $('#calendar tr td').length;
+    lastRow = document.getElementsByClassName("row5");
+    if (colCount === 42){
+        for(i=0; i < 7; i++){
+            emptyDay = document.createElement("td");
+            blank = document.createTextNode("");
+            emptyDay.appendChild(blank);
+            emptyDay.setAttribute("class", "empty-day")
+            lastRow[0].appendChild(emptyDay);  
+        }
     }
 }
 
