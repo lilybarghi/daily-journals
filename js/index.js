@@ -281,12 +281,9 @@ function handle_statistics() {
 
     // get the number of days journaled in a row
     var streak_num = 1;
-    let secondJourn = journals[journals.length - 2].date;
-    let secondDate = new Date(secondJourn);
     let latestJourn = journals[journals.length - 1].date;
     let latestDate = new Date(latestJourn);
     let today = new Date();
-    // console.log("latest date: " + latestDate.getDate() + " today: " + today.getDate() + " second: " + secondDate.getDate());
     if ((latestDate.getDate() != today.getDate()) && (latestDate.getDate() != (today.getDate() -  1))) {
         streak_num = 0;
     } else {
