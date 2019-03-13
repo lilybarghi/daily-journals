@@ -191,17 +191,6 @@
 
     <a v-b-modal="'journalEntryModal'" class="addButton"><i class="fas fa-plus" style="color:white"></i></a>
 
-
-   <!-- <b-container v-for="journal in journals" :key="journal.id">
-      <p>{{journal.id}}</p>
-      <p>{{journal.title}}</p>
-      <p>{{journal.mood}}</p>
-      <p>{{journal.emotions}}</p>
-      <p>{{journal.goal}}</p>
-      <p>{{journal.entry}}</p>
-      <p>{{journal.date}}</p>
-    </b-container> -->
-
   </div>
   </div>
   <!--end app div-->
@@ -221,7 +210,7 @@
           },
           {
             id: "2019-03-02",
-            title: "Journal entry #1",
+            title: "What a bad day!",
             mood: "Bad",
             emotions: ["content", "carefree"],
             goal: "Eat breakfast",
@@ -242,8 +231,8 @@
             title: "This is a second title.",
             mood: "Neutral",
             emotions: ["joyful", "confused"],
-            goal: "Be punctual!",
-            entry: "This was an ok day.",
+            goal: "Work on time mangement!",
+            entry: "I wish today was better! I really would have liked to get my work done on time.",
             date: Date.parse("2019-03-10") + 1000 * 60 * 60 * 6
           },
           {
@@ -254,6 +243,15 @@
             goal: "Say thank you to someone!",
             entry: "This was a day.",
             date: Date.parse("2019-03-11") + 1000 * 60 * 60 * 6
+          },
+          {
+            id: "2019-03-12",
+            title: "This is a fourth title.",
+            mood: "Okay",
+            emotions: ["joyful", "confused"],
+            goal: "Call my parents.",
+            entry: "I had some great food today.",
+            date: Date.parse("2019-03-12") + 1000 * 60 * 60 * 6
           }
         ],
         newEntry: {
